@@ -1,0 +1,16 @@
+{
+  "name": "corona_virus_tracker",
+  "version": "1.0.0",
+  "description": "My own Corona virus tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "GAbriel v. Agoncillo",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "react-filter-search": "^1.0.11",
+    "react-router-dom": "^5.1.2"
+  }
+}
