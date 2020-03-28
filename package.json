@@ -8,9 +8,5 @@
   },
   "author": "GAbriel v. Agoncillo",
   "license": "ISC",
-  "dependencies": {
-    "bootstrap": "^4.4.1",
-    "react-filter-search": "^1.0.11",
-    "react-router-dom": "^5.1.2"
-  }
+  "dependencies": {}
 }

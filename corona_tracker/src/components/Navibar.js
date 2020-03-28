@@ -44,7 +44,7 @@ export class Navibar extends Component {
           <Nav className="mr-auto" navbar>
 
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub Link Here</NavLink>
+              <NavLink href="https://github.com/gabs086/Simple-Corona-Virus-Tracker">GitHub Link Here</NavLink>
             </NavItem>
 
 
