@@ -6,7 +6,7 @@ export class Jumbo extends Component {
     constructor(props){
         super(props)
 
-        this.getResults = this.getResults.bond
+        this.getResults = this.getResults.bind(this);
 
         this.state = {
             results: [],
