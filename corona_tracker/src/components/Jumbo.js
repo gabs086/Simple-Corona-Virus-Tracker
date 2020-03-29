@@ -59,7 +59,7 @@ export class Jumbo extends Component {
                            <p className="text-danger">Total cases around the globe: {result.total_cases}</p>
                            <p className="text-danger">Total deaths around the globe: {result.total_deaths}</p>
                            <p
-                           className="text-success">Total recoveries around the globe: {result.total_cases}</p>
+                           className="text-success">Total recoveries around the globe: {result.total_recovered}</p>
                            <p className="text-primary">Total Cases in the world today: {result.total_new_cases_today}</p>
                            </div>
                         )

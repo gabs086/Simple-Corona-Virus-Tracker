@@ -37,14 +37,14 @@ export class Navibar extends Component {
   
         return (
             <div>
-                  <Navbar color="light" light expand="md">
+        <Navbar className="navbar navbar-dark bg-primary">
         <NavbarBrand href="/">Corona Virus Tracker</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
 
             <NavItem>
-              <NavLink href="https://github.com/gabs086/Simple-Corona-Virus-Tracker">GitHub Link Here</NavLink>
+              <NavLink target="_blank" href="https://github.com/gabs086/Simple-Corona-Virus-Tracker">GitHub Link Here</NavLink>
             </NavItem>
 
 
