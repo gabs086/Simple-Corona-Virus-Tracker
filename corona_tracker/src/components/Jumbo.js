@@ -15,10 +15,6 @@ export class Jumbo extends Component {
     }
 
     getResults(){
-      
-    }
-
-    componentDidMount(){
         axios.get('https://thevirustracker.com/free-api?global=stats')
         .then(res =>{
           this.setState({
@@ -26,7 +22,11 @@ export class Jumbo extends Component {
             loading: false
           })
         } )
-        .catch(err => console.log(err));
+        .catch(err => console.log(err));    
+    }
+
+    componentDidMount(){
+        this.interval = setInterval(this.getResults(), 7200000)
     }
 
     render() {
