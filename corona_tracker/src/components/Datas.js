@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { FormGroup, Label, Input, Jumbotron } from 'reactstrap';
+import { FormGroup, Label, Input } from 'reactstrap';
+
+import Jumbo from './Jumbo';
 
 export class Datas extends Component {
     constructor(props){
@@ -51,7 +53,7 @@ export class Datas extends Component {
           <div className="row">
                     <div className="container">
 
-                        <FormGroup>
+                        <FormGroup className="mt-3">
                         <Label for="exampleSelect">Select Country</Label>
                         <Input type="select" 
                         name="select" 
@@ -62,7 +64,9 @@ export class Datas extends Component {
                           <option>  Please Wait. The selection is loading... </option>
                         : 
                         countries.map((country, id) => {
-                          return( <option key={id} value={country.Country}>{country.Country}</option> ) 
+                          return( 
+                          <option key={id} value={country.Country}>{country.Country}</option> 
+                          ) 
                         })
                         }
                         </Input>
@@ -72,15 +76,9 @@ export class Datas extends Component {
 
                         {
                           search === '' ?
-                          <Jumbotron className="col sm">
-                          <h1 className="display-6">Simple, YET informative Corona Virus Tracker.</h1>
-                          <p className="lead">This is a simple corona virus tracker made in pure ReactJS.</p>
-                          <p>API Reference: <a>https://api.covid19api.com/summary</a></p>
-                          {/* <p>API Link: <a href="https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest" target="_blank">hhttps://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest</a></p> */}
-                          <hr className="my-2" />
-                          
-                        </Jumbotron>
+                            <Jumbo />
                           :
+                          
                           //Filtering Specific Datas
                          countries.filter(country => country.Country === search).map(country =>{
                               return(

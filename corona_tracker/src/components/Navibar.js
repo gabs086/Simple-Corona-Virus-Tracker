@@ -34,7 +34,7 @@ export class Navibar extends Component {
     render() {
         const toggle = this.toggle;
         const { isOpen } = this.state
-        console.log(isOpen)
+  
         return (
             <div>
                   <Navbar color="light" light expand="md">
