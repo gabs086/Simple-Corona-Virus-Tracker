@@ -15,22 +15,23 @@ export class Jumbo extends Component {
     }
 
     getResults(){
-        axios.get('https://thevirustracker.com/free-api?global=stats')
+        axios.get('https://api.thevirustracker.com/free-api?global=stats')
         .then(res =>{
-          this.setState({
-            results: res.data.results,
-            loading: false
-          })
+                this.setState({
+                    results: res.data.results,
+                    loading: false
+                  })
         } )
         .catch(err => console.log(err));    
     }
 
     componentDidMount(){
-        this.interval = setInterval(this.getResults(), 7200000)
+        this.interval = setInterval(this.getResults(), 60000)
     }
 
     render() {
         const { results, loading } = this.state;
+        console.log(results)
         return (
             <div>
                  <Jumbotron className="col sm">
@@ -40,7 +41,8 @@ export class Jumbo extends Component {
                             <br></br>
                         1. <a href="https://api.covid19api.com/summary" target="_blank">https://api.covid19api.com/summary</a>
                         <br />
-                        2. <a href="https://thevirustracker.com/free-api?global=stats" target="_blank">https://thevirustracker.com/free-api?global=stats</a></p>
+                        2. <a href="https://api.thevirustracker.com/free-api?global=stats" target="_blank">https://api.thevirustracker.com/free-api?global=stats
+                        </a></p>
                         
                           <hr className="my-2" />
                     

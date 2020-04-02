@@ -35,7 +35,7 @@ export class Datas extends Component {
     }
 
     componentDidMount(){
-      this.interval = setInterval(this.getDatas(), 7200000)
+      this.interval = setInterval(this.getDatas(), 60000)
     }
 
     onSearchFilter(e){
