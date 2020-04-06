@@ -9,16 +9,16 @@ export class Jumbo extends Component {
         this.getResults = this.getResults.bind(this);
 
         this.state = {
-            results: [],
+            results: {},
             loading: true
         }
     }
 
     getResults(){
-        axios.get('https://api.thevirustracker.com/free-api?global=stats')
+        axios.get('https://corona.lmao.ninja/all')
         .then(res =>{
                 this.setState({
-                    results: res.data.results,
+                    results: res.data,
                     loading: false
                   })
         } )
@@ -31,7 +31,6 @@ export class Jumbo extends Component {
 
     render() {
         const { results, loading } = this.state;
-        console.log(results)
         return (
             <div>
                  <Jumbotron className="col sm">
@@ -39,11 +38,14 @@ export class Jumbo extends Component {
                          
                           <p>API Reference:
                             <br></br>
-                        1. <a href="https://api.covid19api.com/summary" target="_blank">https://api.covid19api.com/summary</a>
+                        1. <a href="https://corona.lmao.ninja/countries?sort=country" target="_blank">https://corona.lmao.ninja/countries?sort=country</a>
                         <br />
-                        2. <a href="https://api.thevirustracker.com/free-api?global=stats" target="_blank">https://api.thevirustracker.com/free-api?global=stats
+                        2. <a href="https://corona.lmao.ninja/all" target="_blank">https://corona.lmao.ninja/all
                         </a></p>
-                        
+                        <div className="text-center"> 
+                        <span style={{color: 'red', height: '10px'}}>LIVE</span>
+                        <Spinner type="grow" color="danger" />
+                        </div>
                           <hr className="my-2" />
                     
                     {
@@ -54,18 +56,16 @@ export class Jumbo extends Component {
                         </p>
 
                         :
-
-                    results.map((result,id) => {
-                      return( 
                           <div>
-                           <p className="text-danger">Total cases around the globe: {result.total_cases}</p>
-                           <p className="text-danger">Total deaths around the globe: {result.total_deaths}</p>
+                    
+                           <p className="text-danger">Total cases around the globe: {results.cases}</p>
+                           <p className="text-danger">Total deaths around the globe: {results.deaths}</p>
+                           <p className="text-danger">Total deaths around the globe today: {results.todayDeaths}</p>
                            <p
-                           className="text-success">Total recoveries around the globe: {result.total_recovered}</p>
-                           <p className="text-primary">Total Cases in the world today: {result.total_new_cases_today}</p>
+                           className="text-success">Total recoveries around the globe: {results.recovered}</p>
+                           <p className="text-primary">Total Cases in the world today: {results.todayCases}</p>
                            </div>
-                        )
-                    })
+                        
 
                     }
                         
