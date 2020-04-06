@@ -5,6 +5,7 @@ import { FormGroup, Label, Input } from 'reactstrap';
 import Jumbo from './Jumbo';
 
 export class Datas extends Component {
+    intervalID;
     constructor(props){
       super(props)
 
@@ -28,13 +29,19 @@ export class Datas extends Component {
         this.setState({
           datas:res.data,
           loading: false
-        })
+        });
+
+        this.intervalID = setTimeout(this.getDatas, 5000);
       })
       .catch(err => console.log(err))
     }
 
     componentDidMount(){
       this.interval = setInterval(this.getDatas(), 60000)
+    }
+
+    componentWillUnmount(){
+      clearInterval(this.getDatas);
     }
 
     onSearchFilter(e){

@@ -3,9 +3,11 @@ import { Jumbotron, Spinner } from 'reactstrap';
 import axios from 'axios';
 
 export class Jumbo extends Component {
+    intervalID;
+
     constructor(props){
         super(props)
-
+        
         this.getResults = this.getResults.bind(this);
 
         this.state = {
@@ -20,13 +22,18 @@ export class Jumbo extends Component {
                 this.setState({
                     results: res.data,
                     loading: false
-                  })
+                  });
+            this.intervalID = setTimeout(this.getResults, 5000)
         } )
         .catch(err => console.log(err));    
     }
 
     componentDidMount(){
-        this.interval = setInterval(this.getResults(), 60000)
+        this.getResults();
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.intervalID);
     }
 
     render() {
