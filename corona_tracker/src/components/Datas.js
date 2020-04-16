@@ -62,7 +62,8 @@ export class Datas extends Component {
       } 
       else if(search === 'all')
       {
-        displayData = datas.map(country => {
+        displayData = datas.sort((a, b) => a.country.localeCompare(b.country))
+        .map(country => {
             return(
               <div>
               <ul class="list-group">
