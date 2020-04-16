@@ -29,7 +29,7 @@ export class Jumbo extends Component {
     }
 
     componentDidMount(){
-        this.getResults();
+       this.intervalID = setInterval(this.getResults(), 5000) ;
     }
 
     componentWillUnmount(){

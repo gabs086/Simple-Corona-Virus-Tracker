@@ -37,7 +37,7 @@ export class Datas extends Component {
     }
 
     componentDidMount(){
-      this.interval = setInterval(this.getDatas(), 60000)
+      this.intervalID = setInterval(this.getDatas(), 5000);
     }
 
     componentWillUnmount(){
