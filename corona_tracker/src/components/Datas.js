@@ -24,7 +24,8 @@ export class Datas extends Component {
     }
 
     getDatas(){
-      axios.get('https://corona.lmao.ninja/countries?sort=country')
+      // axios.get('https://corona.lmao.ninja/countries?sort=country')
+      axios.get('https://corona.lmao.ninja/v2/countries')
       .then(res => {
         this.setState({
           datas:res.data,
@@ -37,11 +38,11 @@ export class Datas extends Component {
     }
 
     componentDidMount(){
-      this.intervalID = setInterval(this.getDatas(), 5000);
+      this.getDatas();
     }
 
     componentWillUnmount(){
-      clearInterval(this.getDatas);
+      clearTimeout(this.getDatas);
     }
 
     onSearchFilter(e){

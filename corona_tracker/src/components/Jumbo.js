@@ -17,7 +17,8 @@ export class Jumbo extends Component {
     }
 
     getResults(){
-        axios.get('https://corona.lmao.ninja/all')
+        // axios.get('https://corona.lmao.ninja/all')
+        axios.get('https://corona.lmao.ninja/v2/all')
         .then(res =>{
                 this.setState({
                     results: res.data,
@@ -29,11 +30,11 @@ export class Jumbo extends Component {
     }
 
     componentDidMount(){
-       this.intervalID = setInterval(this.getResults(), 5000) ;
+       this.getResults();
     }
 
     componentWillUnmount(){
-        clearInterval(this.intervalID);
+        clearTimeout(this.intervalID);
     }
 
     render() {
