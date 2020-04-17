@@ -46,9 +46,9 @@ export class Jumbo extends Component {
                          
                           <p>API Reference:
                             <br></br>
-                        1. <a href="https://corona.lmao.ninja/countries?sort=country" target="_blank">https://corona.lmao.ninja/countries?sort=country</a>
+                        1. <a href="https://corona.lmao.ninja/v2/countries" target="_blank">https://corona.lmao.ninja/v2/countries</a>
                         <br />
-                        2. <a href="https://corona.lmao.ninja/all" target="_blank">https://corona.lmao.ninja/all
+                        2. <a href="https://corona.lmao.ninja/v2/all" target="_blank">https://corona.lmao.ninja/v2/all
                         </a></p>
                         <div className="text-center"> 
                         <span style={{color: 'red', height: '10px'}}>LIVE</span>
