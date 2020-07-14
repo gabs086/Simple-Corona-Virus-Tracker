@@ -1,44 +1,37 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Jumbotron, Spinner } from 'reactstrap';
 import axios from 'axios';
 
-export class Jumbo extends Component {
-    intervalID;
+ function Jumbo(props) {
 
-    constructor(props){
-        super(props)
-        
-        this.getResults = this.getResults.bind(this);
+    const [results, setResults] = useState({});
+    const [loading, setLoading] = useState(true);
 
-        this.state = {
-            results: {},
-            loading: true
-        }
-    }
-
-    getResults(){
+    const getResults = _ => {
         // axios.get('https://corona.lmao.ninja/all')
         axios.get('https://corona.lmao.ninja/v2/all')
         .then(res =>{
-                this.setState({
-                    results: res.data,
-                    loading: false
-                  });
-            this.intervalID = setTimeout(this.getResults, 5000)
+                // this.setState({
+                //     results: res.data,
+                //     loading: false
+                //   });
+                setResults(res.data);
         } )
         .catch(err => console.log(err));    
     }
 
-    componentDidMount(){
-       this.getResults();
-    }
+    useEffect(_ => {
+        const id = setInterval(_ => {
+            getResults();
+            setLoading(false);
+        }, 2000);
 
-    componentWillUnmount(){
-        clearTimeout(this.intervalID);
-    }
+        return _ => {
+            clearInterval(id);
+        }
+    },[])
 
-    render() {
-        const { results, loading } = this.state;
+ 
         return (
             <div>
                  <Jumbotron className="col sm">
@@ -83,7 +76,7 @@ export class Jumbo extends Component {
                         </Jumbotron>
             </div>
         )
-    }
+    
 }
 
-export default Jumbo
+export default Jumbo;

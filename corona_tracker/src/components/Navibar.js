@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Collapse,
     Navbar,
@@ -14,26 +14,19 @@ import {
     NavbarText
   } from 'reactstrap';
 
-export class Navibar extends Component {
-    constructor(props){
-        super(props)
+function Navibar(props) {
 
-        this.toggle = this.toggle.bind(this);
-        
-        this.state ={ 
-            isOpen: false
-        }
-    }
+  const [isOpen, setIsOpen] = useState(false)
+  
+  const toggle = _ => {
+    setIsOpen(!isOpen);
+  }
 
-    toggle(){
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
-
-    render() {
-        const toggle = this.toggle;
-        const { isOpen } = this.state
+    // toggle(){
+    //     this.setState({
+    //         isOpen: !this.state.isOpen
+    //     })
+    // }
   
         return (
             <div>
@@ -55,6 +48,5 @@ export class Navibar extends Component {
             </div>
         )
     }
-}
 
 export default Navibar

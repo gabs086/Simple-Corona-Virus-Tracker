@@ -1,60 +1,42 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import { FormGroup, Label, Input } from 'reactstrap';
 
 import Jumbo from './Jumbo';
 
-export class Datas extends Component {
-    intervalID;
-    constructor(props){
-      super(props)
+function Datas(props) {
 
-      this.onSearchFilter = this.onSearchFilter.bind(this);
-      this.getDatas = this.getDatas.bind(this);
+    const [datas, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [search, setSearch] = useState('');
 
-      this.state = {
-        datas: [],
-        countries: [],
-        loading: true,
 
-        //Search Filterfing
-        search: '',
-      }
-
-    }
-
-    getDatas(){
+   const getDatas = _ => {
       // axios.get('https://corona.lmao.ninja/countries?sort=country')
       axios.get('https://corona.lmao.ninja/v2/countries')
       .then(res => {
-        this.setState({
-          datas:res.data,
-          loading: false
-        });
-
-        this.intervalID = setTimeout(this.getDatas, 5000);
+      
+        setData(res.data);
+       
       })
       .catch(err => console.log(err))
     }
 
-    componentDidMount(){
-      this.getDatas();
-    }
+   const onSearchFilter = e => {
+        setSearch(e.target.value);
+     }
 
-    componentWillUnmount(){
-      clearTimeout(this.getDatas);
-    }
+    useEffect(_ => {
+      const id = setInterval( _ => {
+        getDatas();
+        setLoading(false)
+      }, 2000);
 
-    onSearchFilter(e){
-     this.setState({
-       search: e.target.value
-     })
-    }
-    
+      return _ => {
+        clearInterval(id)
+      }
+    },[]);
 
-    render() {
-      const { datas, loading, search } = this.state;
-      const onSearchFilter = this.onSearchFilter;
 
       let displayData; 
       if(search === '')
@@ -202,7 +184,6 @@ export class Datas extends Component {
             </div>
         )
     }
-}
 
 export default Datas
 
