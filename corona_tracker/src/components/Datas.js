@@ -17,6 +17,8 @@ function Datas(props) {
       .then(res => {
       
         setData(res.data);
+        setLoading(false)
+
        
       })
       .catch(err => console.log(err))
@@ -29,14 +31,16 @@ function Datas(props) {
     useEffect(_ => {
       const id = setInterval( _ => {
         getDatas();
-        setLoading(false)
-      }, 2000);
+      }, 1000);
 
       return _ => {
         clearInterval(id)
       }
     },[]);
 
+    const numberWithCommas = x => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 
       let displayData; 
       if(search === '')
@@ -60,33 +64,33 @@ function Datas(props) {
 
                 {country.todayCases >= 100 ?
 
-                <li class="list-group-item text-danger">New Confirmed Cases in the Country:   {country.todayCases} </li>
+                <li class="list-group-item text-danger">New Confirmed Cases in the Country:   {numberWithCommas(country.todayCases)} </li>
 
-                :  <li class="list-group-item ">New Confirmed Cases in the Country:   {country.todayCases} </li>
+                :  <li class="list-group-item ">New Confirmed Cases in the Country:   {numberWithCommas(country.todayCases)} </li>
                 }
                 
                 { country.cases >= 100 
                 ?
-                <li class="list-group-item text-danger">Total Confirmed Cases in the Country: {country.cases}</li>
+                <li class="list-group-item text-danger">Total Confirmed Cases in the Country: {numberWithCommas(country.cases)}</li>
                 :
-                <li class="list-group-item">Total Confirmed Cases in the Country: {country.cases}</li>
+                <li class="list-group-item">Total Confirmed Cases in the Country: {numberWithCommas(country.cases)}</li>
                 }
 
                 { country.todayDeaths >= 100
                 ?
-                <li class="list-group-item text-danger">New Confirmed Deaths in the Country: {country.todayDeaths}</li>
+                <li class="list-group-item text-danger">New Confirmed Deaths in the Country: {numberWithCommas(country.todayDeaths)}</li>
                   :
-                <li class="list-group-item">New Confirmed Deaths in the Country: {country.todayDeaths}</li>
+                <li class="list-group-item">New Confirmed Deaths in the Country: {numberWithCommas(country.todayDeaths)}</li>
                 }
 
                 { country.deaths >= 100
                 ?
-                <li class="list-group-item text-danger">Total Confirmed Deaths in the Country: {country.deaths}</li>
+                <li class="list-group-item text-danger">Total Confirmed Deaths in the Country: {numberWithCommas(country.deaths)}</li>
                 :
-                <li class="list-group-item">Total Confirmed Deaths in the Country: {country.deaths}</li>
+                <li class="list-group-item">Total Confirmed Deaths in the Country: {numberWithCommas(country.deaths)}</li>
               }
 
-                <li class="list-group-item text-success">Total Recoveries in the Country: {country.recovered}</li>
+                <li class="list-group-item text-success">Total Recoveries in the Country: {numberWithCommas(country.recovered)}</li>
               </ul> 
 
               </div>
@@ -109,33 +113,33 @@ function Datas(props) {
 
             {country.todayCases >= 100 ?
 
-            <li class="list-group-item text-danger">New Confirmed Cases in the Country:   {country.todayCases} </li>
+            <li class="list-group-item text-danger">New Confirmed Cases in the Country:   {numberWithCommas(country.todayCases)} </li>
 
-            :  <li class="list-group-item ">New Confirmed Cases in the Country:   {country.todayCases} </li>
+            :  <li class="list-group-item ">New Confirmed Cases in the Country:   {numberWithCommas(country.todayCases)} </li>
             }
             
             { country.cases >= 100 
             ?
-            <li class="list-group-item text-danger">Total Confirmed Cases in the Country: {country.cases}</li>
+            <li class="list-group-item text-danger">Total Confirmed Cases in the Country: {numberWithCommas(country.cases)}</li>
             :
-            <li class="list-group-item">Total Confirmed Cases in the Country: {country.cases}</li>
+            <li class="list-group-item">Total Confirmed Cases in the Country: {numberWithCommas(country.cases)}</li>
             }
 
             { country.todayDeaths >= 100
             ?
-            <li class="list-group-item text-danger">New Confirmed Deaths in the Country: {country.todayDeaths}</li>
+            <li class="list-group-item text-danger">New Confirmed Deaths in the Country: {numberWithCommas(country.todayDeaths)}</li>
               :
-            <li class="list-group-item">New Confirmed Deaths in the Country: {country.todayDeaths}</li>
+            <li class="list-group-item">New Confirmed Deaths in the Country: {numberWithCommas(country.todayDeaths)}</li>
             }
 
             { country.deaths >= 100
             ?
-            <li class="list-group-item text-danger">Total Confirmed Deaths in the Country: {country.deaths}</li>
+            <li class="list-group-item text-danger">Total Confirmed Deaths in the Country: {numberWithCommas(country.deaths)}</li>
             :
-            <li class="list-group-item">Total Confirmed Deaths in the Country: {country.deaths}</li>
+            <li class="list-group-item">Total Confirmed Deaths in the Country: {numberWithCommas(country.deaths)}</li>
           }
 
-            <li class="list-group-item text-success">Total Recoveries in the Country: {country.recovered}</li>
+            <li class="list-group-item text-success">Total Recoveries in the Country: {numberWithCommas(country.recovered)}</li>
           </ul> 
 
           </div>

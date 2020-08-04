@@ -16,6 +16,8 @@ import axios from 'axios';
                 //     loading: false
                 //   });
                 setResults(res.data);
+                setLoading(false);
+
         } )
         .catch(err => console.log(err));    
     }
@@ -23,14 +25,16 @@ import axios from 'axios';
     useEffect(_ => {
         const id = setInterval(_ => {
             getResults();
-            setLoading(false);
-        }, 2000);
+        }, 1000)
 
         return _ => {
-            clearInterval(id);
+          clearInterval(id);
         }
     },[])
 
+    const numberWithCommas = x => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
  
         return (
             <div>
@@ -59,12 +63,12 @@ import axios from 'axios';
                         :
                           <div>
                     
-                           <p className="text-danger">Total cases around the globe: {results.cases}</p>
-                           <p className="text-danger">Total deaths around the globe: {results.deaths}</p>
-                           <p className="text-danger">Total deaths around the globe today: {results.todayDeaths}</p>
+                           <p className="text-danger">Total cases around the globe: {numberWithCommas(results.cases)}</p>
+                           <p className="text-danger">Total deaths around the globe: {numberWithCommas(results.deaths)}</p>
+                           <p className="text-danger">Total deaths around the globe today: {numberWithCommas(results.todayDeaths)}</p>
                            <p
-                           className="text-success">Total recoveries around the globe: {results.recovered}</p>
-                           <p className="text-primary">Total Cases in the world today: {results.todayCases}</p>
+                           className="text-success">Total recoveries around the globe: {numberWithCommas(results.recovered)}</p>
+                           <p className="text-primary">Total Cases in the world today: {numberWithCommas(results.todayCases)}</p>
                            </div>
                         
 
